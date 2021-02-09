@@ -1,4 +1,5 @@
 import React from 'react';
+import ListarProdutos from '../ListarProdutos';
 
 import {
     Container
@@ -7,7 +8,7 @@ import {
 export default () => {
     return(
         <Container>
-            <h1>Produtos</h1>
+            <ListarProdutos />
         </Container>
     );
 }
