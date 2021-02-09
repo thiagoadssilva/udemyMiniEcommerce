@@ -7,7 +7,7 @@ import {
   Container
 } from './styled';
 
-export default () => {
+export default (props) => {
   const produtos = [
     { nome: 'Aprender java', preco: 'R$ 30,99' },
     { nome: 'Aprender java', preco: 'R$ 30,99' },
@@ -19,8 +19,10 @@ export default () => {
     { nome: 'Aprender java', preco: 'R$ 30,99' },
   ];
 
-  function handleComprar(event){
-    event.preventDefault(); 
+  function handleComprar(event, produto){
+    event.preventDefault();
+    props.adicionarProduto(produto); 
+    props.exibirMensagem(produto);
   }
 
   function render() {
