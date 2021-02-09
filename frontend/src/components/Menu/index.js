@@ -7,7 +7,7 @@ import {
 export default () => {
     return(
         <Container>
-            <h1>thiago</h1>
+            <h1>menu</h1>
         </Container>
     );
 }
