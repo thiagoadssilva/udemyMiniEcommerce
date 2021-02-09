@@ -2,7 +2,7 @@
 * Projeto para treinamento na tecnologia Reactjs, onde vamos contruir um mini-ecommerce, onde essas informações vão está em um projeto que é api, porém esa api está fazendo o armazenamento na memoria.
 
 * Dentro do <b>README</b> da pasta do projeto está tudo que está sendo usando.
-   * https://github.com/thiagoadssilva/thiagoCovid19/blob/main/frontend/README.md
+   * https://github.com/thiagoadssilva/udemyMiniEcommerce/blob/main/frontend/README.md
 
 <hr>   
 
