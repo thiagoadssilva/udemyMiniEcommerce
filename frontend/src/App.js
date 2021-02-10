@@ -30,9 +30,20 @@ function App() {
     setCarrinho(objCarrinho);
   }
 
+  function handleExibirProdutos(){
+    setExibirCheckout(false);
+    setExibirProduto(true);
+  }
+
+  function handleExibirCheckout(total){
+    setExibirCheckout(true);
+    setExibirProduto(false);
+    setTotal(total);
+  }
+
   return (
     <div>
-      <Menu />
+      <Menu produtos={carrinho.produtos} handleExibirProdutos={handleExibirProdutos} handleExibirCheckout={handleExibirCheckout}/>
       <Produtos visivel={exibirProduto} adicionarProduto={adicionarProduto}/>
       <Checkout />
     </div>

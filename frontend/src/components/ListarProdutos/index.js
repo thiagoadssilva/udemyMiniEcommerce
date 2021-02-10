@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
-import placehold from '../../images/produto.jpg';
+import placeholder from '../../images/produto.jpg';
 
 
 import {
@@ -29,7 +29,7 @@ export default (props) => {
     let key = 1;
     const carts = produtos.map(produto =>
       <Card style={{ width: '18rem', margin: '10px', float: 'left' }} key={key} data-testid={'cart' + key++}>
-        <Card.Img variant='top' src={placehold} />
+        <Card.Img variant='top' src={placeholder} />
         <Card.Body className='text-center'>
           <Card.Title style={{ height: '40px' }}>{produto.nome}</Card.Title>
           <Card.Text>

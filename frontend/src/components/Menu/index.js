@@ -8,7 +8,23 @@ import {
   Container
 } from './styled';
 
-export default () => {
+export default (props) => {
+
+  function calcularTotal(){
+
+    if(props.produtos.length === 0){
+      return '0,00';
+    }
+    let total = 0;
+    props.produtos.forEach(produto => {
+      let preco = produto.preco.replace(',', '.').replace('R$ ', '');
+      total += parseFloat(preco) * produto.quantidade;
+    });
+    
+    return total.toString().replace('.', ',');
+  }
+
+
   return (
     <Container>
       <Navbar bg="dark" variant="dark">
@@ -25,7 +41,7 @@ export default () => {
               }
               drop="left"
             >
-              <NavDropdown.Item href="">
+              <NavDropdown.Item href="" onClick={props.handleExibirProdutos}>
                 <FontAwesomeIcon icon={faShoppingBasket}/>
                 &nbsp;
                 <strong>Produtos</strong>
@@ -36,12 +52,14 @@ export default () => {
               <NavDropdown.Divider />
               
               <NavDropdown.Item href="" data-testid="total-carrinho">
-                Total: R$ {/* AQUI VAI FICAR A FUNÇÃO QUE VAI CALCULAR O VALOR TOTAL */}
+                Total: R$ {calcularTotal()}
               </NavDropdown.Item>
+              
+              {console.log(props)}
 
-              <span>
+              <span style={{display: props.produtos.length === 0 ? 'none' : 'block'}}>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="" style={{color: 'green'}}>
+                <NavDropdown.Item href="" style={{color: 'green'}} onClick={() => props.handleExibirCheckout(calcularTotal())}>
                   <FontAwesomeIcon  icon={faCashRegister}/>
                   &nbsp;
                   Finalizar Compra
