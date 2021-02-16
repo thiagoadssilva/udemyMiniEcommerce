@@ -12,11 +12,11 @@ export default (props) => {
     { nome: 'Aprender java', preco: 'R$ 30,99' },
     { nome: 'Aprender java', preco: 'R$ 30,99' },
     { nome: 'Aprender java', preco: 'R$ 30,99' },
-    { nome: 'Aprender java', preco: 'R$ 30,99' },
-    { nome: 'Aprender java', preco: 'R$ 30,99' },
-    { nome: 'Aprender java', preco: 'R$ 30,99' },
-    { nome: 'Aprender java', preco: 'R$ 30,99' },
-    { nome: 'Aprender java', preco: 'R$ 30,99' },
+    { nome: 'Marcilio', preco: 'R$ 30,99' },
+    { nome: 'isabel', preco: 'R$ 30,99' },
+    { nome: 'Dineia', preco: 'R$ 30,99' },
+    { nome: 'Bento', preco: 'R$ 30,99' },
+    { nome: 'Thiago', preco: 'R$ 30,99' },
   ];
 
   function handleComprar(event, produto){

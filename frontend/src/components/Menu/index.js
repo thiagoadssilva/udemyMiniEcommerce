@@ -2,7 +2,7 @@ import React from 'react';
 import { Nav, NavDropdown, Navbar, NavbarBrand } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBasket, faCashRegister, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-
+import ItensCarrinhoMenu from './itensCarrinhoMenu';
 
 import {
   Container
@@ -10,9 +10,9 @@ import {
 
 export default (props) => {
 
-  function calcularTotal(){
+  function calcularTotal() {
 
-    if(props.produtos.length === 0){
+    if (props.produtos.length === 0) {
       return '0,00';
     }
     let total = 0;
@@ -20,7 +20,7 @@ export default (props) => {
       let preco = produto.preco.replace(',', '.').replace('R$ ', '');
       total += parseFloat(preco) * produto.quantidade;
     });
-    
+
     return total.toString().replace('.', ',');
   }
 
@@ -33,8 +33,8 @@ export default (props) => {
           <Nav>
             <NavDropdown
               title={
-                <div style={{display: 'inline-block'}}>
-                  <FontAwesomeIcon icon={faShoppingCart}/>    
+                <div style={{ display: 'inline-block' }}>
+                  <FontAwesomeIcon icon={faShoppingCart} />
                   &nbsp;
                   Carrinho
                 </div>
@@ -42,25 +42,23 @@ export default (props) => {
               drop="left"
             >
               <NavDropdown.Item href="" onClick={props.handleExibirProdutos}>
-                <FontAwesomeIcon icon={faShoppingBasket}/>
+                <FontAwesomeIcon icon={faShoppingBasket} />
                 &nbsp;
                 <strong>Produtos</strong>
               </NavDropdown.Item>
-              
+
               <NavDropdown.Divider />
-              {/* COLCOAR AQUI A LISTA DOS PRODUTOS */}
+                <ItensCarrinhoMenu produtos={props.produtos} />
               <NavDropdown.Divider />
-              
+
               <NavDropdown.Item href="" data-testid="total-carrinho">
                 Total: R$ {calcularTotal()}
               </NavDropdown.Item>
-              
-              {console.log(props)}
 
-              <span style={{display: props.produtos.length === 0 ? 'none' : 'block'}}>
+              <span style={{ display: props.produtos.length === 0 ? 'none' : 'block' }}>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="" style={{color: 'green'}} onClick={() => props.handleExibirCheckout(calcularTotal())}>
-                  <FontAwesomeIcon  icon={faCashRegister}/>
+                <NavDropdown.Item href="" style={{ color: 'green' }} onClick={() => props.handleExibirCheckout(calcularTotal())}>
+                  <FontAwesomeIcon icon={faCashRegister} />
                   &nbsp;
                   Finalizar Compra
                 </NavDropdown.Item>
@@ -69,7 +67,7 @@ export default (props) => {
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
-      </Navbar>  
+      </Navbar>
     </Container>
   );
 }
