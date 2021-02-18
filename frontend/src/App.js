@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Menu from './components/Menu';
-import Produtos from './components/Produtos';
+import Produtos from './components/Produtos/';
 import Checkout from './components/Checkout';
 import './App.css';
 
@@ -22,7 +22,7 @@ function App() {
       }
     });
 
-    if(novoProduto){
+    if(novoProduto){ 
       objCarrinho.produtos.push({
         nome: produto.nome, preco: produto.preco, quantidade: 1
       });
@@ -43,7 +43,10 @@ function App() {
 
   return (
     <div>
-      <Menu produtos={carrinho.produtos} handleExibirProdutos={handleExibirProdutos} handleExibirCheckout={handleExibirCheckout}/>
+      <Menu 
+        produtos={carrinho.produtos}
+        handleExibirProdutos={handleExibirProdutos} 
+        handleExibirCheckout={handleExibirCheckout}/>
       <Produtos visivel={exibirProduto} adicionarProduto={adicionarProduto}/>
       <Checkout />
     </div>

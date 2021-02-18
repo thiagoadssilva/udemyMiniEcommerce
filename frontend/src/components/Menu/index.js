@@ -41,14 +41,17 @@ export default (props) => {
               }
               drop="left"
             >
-              <NavDropdown.Item href="" onClick={props.handleExibirProdutos}>
+              <NavDropdown.Item 
+                href="" 
+                onClick={props.handleExibirProdutos}
+              >
                 <FontAwesomeIcon icon={faShoppingBasket} />
                 &nbsp;
                 <strong>Produtos</strong>
               </NavDropdown.Item>
 
               <NavDropdown.Divider />
-                <ItensCarrinhoMenu produtos={props.produtos} />
+              <ItensCarrinhoMenu produtos={props.produtos} />
               <NavDropdown.Divider />
 
               <NavDropdown.Item href="" data-testid="total-carrinho">
@@ -57,7 +60,11 @@ export default (props) => {
 
               <span style={{ display: props.produtos.length === 0 ? 'none' : 'block' }}>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="" style={{ color: 'green' }} onClick={() => props.handleExibirCheckout(calcularTotal())}>
+                <NavDropdown.Item
+                  href=""
+                  style={{ color: 'green' }}
+                  onClick={() => props.handleExibirCheckout(calcularTotal())}
+                >
                   <FontAwesomeIcon icon={faCashRegister} />
                   &nbsp;
                   Finalizar Compra
