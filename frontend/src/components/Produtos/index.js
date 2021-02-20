@@ -20,7 +20,7 @@ export default (props) => {
     setTimeout(() => {
       setExibirMsg(false);
     }, 3000);
-  }
+  } 
 
   return (
     <Container>
