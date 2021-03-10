@@ -16,6 +16,20 @@
 * Referências: https://react-bootstrap.github.io/
 <hr>
 
+## React-bootstrap
+     yarn add react-bootstrap bootstrap --save
+
+* Referências: https://react-bootstrap.github.io/
+<hr>
+
+
+## React-bootstrap
+     yarn add react-bootstrap bootstrap --save
+
+* Referências: https://react-bootstrap.github.io/
+<hr>
+
+
 ## FontAwesome
      yarn add @fortawesome/fontawesome-svg-core --save
 
