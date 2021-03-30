@@ -12,12 +12,16 @@
 <hr>
 
 ## Projeto Publicado
-- http://covid19.tfcoder.com/
+- http://ecommerce.tfcoder.com/
 
 <hr/>
 
-## <b>HOME SCREEN</b> 
+## <b>Telas:</b> 
 
-![Tela Principal](image/HomeScreen.png)
+![Tela Principal](image/1.png)
+
+<hr>
+
+![Tela Principal](image/2.png)
 
 <hr>
