@@ -139,6 +139,35 @@ export default () => {
         </Form.Group>
 
       </Form>
+
+      <Modal show={false} data-testid="modal-compra-sucesso">
+        <Modal.Header closeButton>
+          <Modal.Title>Compra Realizado com Sucesso!!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Um email foi enviado para sua caixa de emails, com as confirmações do pedido.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="success">
+            Continuar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={true} data-testid="modal-erro-comprar">
+        <Modal.Header closeButton>
+          <Modal.Title>Erro ao processar o pedido!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Tente novamente mais tarde
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="warning">
+            Continuar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
     </Jumbotron>
   );
 }
