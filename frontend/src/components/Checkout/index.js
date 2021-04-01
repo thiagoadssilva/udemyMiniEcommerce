@@ -154,7 +154,7 @@ export default () => {
         </Modal.Footer>
       </Modal>
 
-      <Modal show={true} data-testid="modal-erro-comprar">
+      <Modal show={false} data-testid="modal-erro-comprar">
         <Modal.Header closeButton>
           <Modal.Title>Erro ao processar o pedido!</Modal.Title>
         </Modal.Header>
