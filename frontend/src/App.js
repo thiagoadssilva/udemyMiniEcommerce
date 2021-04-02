@@ -36,10 +36,16 @@ function App() {
   }
 
   function handleExibirCheckout(total) {
-    
+
+    console.log(total);
+
     setExibirCheckout(true);
     setExibirProduto(false);
     setTotal(total);
+  }
+
+  function handleLimparCarrinho(){
+    setCarrinho({produtos: []});
   }
 
   return (
@@ -53,7 +59,13 @@ function App() {
         visivel={exibirProduto}
         adicionarProduto={adicionarProduto}
       />
-      <Checkout />
+      <Checkout 
+        visivel={exibirCheckout} 
+        handleExibirProdutos={handleExibirProdutos} 
+        total={total} 
+        produtos={carrinho}
+        handleLimparCarrinho={handleLimparCarrinho}
+      />
     </div>
 
   );

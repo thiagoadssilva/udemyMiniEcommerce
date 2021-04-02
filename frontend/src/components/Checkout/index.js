@@ -15,9 +15,16 @@ import ListarCidades from './listarCidades';
 
 registerLocale('pt', pt);
 
-export default () => {
+export default (props) => {
+
+  console.log(props.visivel);
+
+  function visivel(){
+    return props.visivel ? null : 'hidden';
+  }
+
   return (
-    <Jumbotron fuild style={{margin: '10px'}}>
+    <Jumbotron fuild style={{margin: '10px'}} className={visivel()}>
       <h3 className="text-center">Finalizar Compra</h3>
     
       <Form noValidate style={{margin: '10px'}}>
@@ -100,7 +107,7 @@ export default () => {
           <Col sm={9}>
             <Form.Control as="select"  name="cidade" data-testid="txt-cidade">
               <option value="">Selecione uma cidade</option> 
-              <ListarCidades estado={'RJ'}/> 
+              <ListarCidades estado={''}/> 
             </Form.Control>
             <Form.Control.Feedback type="invalid">
               Informe sua cidade
