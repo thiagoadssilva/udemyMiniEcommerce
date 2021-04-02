@@ -36,8 +36,3 @@
 
 ![Tela Principal](image/5.png)
 
-<hr>
-
-![Tela Principal](image/5.png)
-
-<hr>

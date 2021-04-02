@@ -10,7 +10,8 @@ import {
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker, {registerLocale} from 'react-datepicker';
 import pt from 'date-fns/locale/pt';
-
+import ListarEstados from './listarEstados';
+import ListarCidades from './listarCidades';
 
 registerLocale('pt', pt);
 
@@ -84,7 +85,7 @@ export default () => {
           </Form.Label>
           <Col sm={9}>
             <Form.Control as="select"  name="estado" data-testid="txt-estado" >
-              <option value="">Selecione um estado</option>
+              <ListarEstados />
             </Form.Control>
             <Form.Control.Feedback type="invalid">
               Informe Seu estado
@@ -99,6 +100,7 @@ export default () => {
           <Col sm={9}>
             <Form.Control as="select"  name="cidade" data-testid="txt-cidade">
               <option value="">Selecione uma cidade</option> 
+              <ListarCidades estado={'RJ'}/> 
             </Form.Control>
             <Form.Control.Feedback type="invalid">
               Informe sua cidade
