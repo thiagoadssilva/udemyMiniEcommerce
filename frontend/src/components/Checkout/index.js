@@ -13,7 +13,8 @@ import pt from 'date-fns/locale/pt';
 import ListarEstados from './listarEstados';
 import ListarCidades from './listarCidades';
 
-import { Formik } from 'formik'
+import { Formik } from 'formik';
+import * as yup from 'yup';
 
 registerLocale('pt', pt);
 
@@ -24,6 +25,18 @@ export default (props) => {
   const [showModal, setshowModal] = useState(false);
   const [showErroModal, setShowErroModal] = useState(false);
 
+  const schema = yup.object({
+    email: yup.string().email().required(),
+    nomeCompleto: yup.string().required().min(5),
+    cpf: yup.string().required().min(14).max(14),
+    endereco: yup.string().required().min(5),
+    cidade: yup.string().required(),
+    estado: yup.string().required(),
+    cep: yup.string().required().min(9).max(9),
+    emailPromocional: yup.string().required(),
+    termoCondicioes: yup.bool().oneOf([true])
+  });
+
 
   function visivel() {
     return props.visivel ? null : 'hidden';
@@ -31,6 +44,21 @@ export default (props) => {
 
   function finalizarCompra(values) {
 
+  }
+
+  function handleDataNascimento(data){
+    setDataNascimento(data);
+  }
+
+  function datePickerCss(){
+    if(!formEnviado){
+      return "form-control";
+    }
+    if(dataNascimento){
+      return "form-control is-valid";
+    }else{
+      return "form-control is-invalid";
+    }
   }
 
   return (
@@ -50,6 +78,7 @@ export default (props) => {
           termoCondicioes: false,
           emailPromocional: 'S'
         }}
+        validationSchema={schema}
       >
         {({
           handleSubmit,
@@ -58,13 +87,26 @@ export default (props) => {
           touched,
           errors
         }) => (
-          <Form noValidate style={{ margin: '10px' }}>
+          <Form 
+            noValidate 
+            style={{ margin: '10px' }}
+            onSubmit={handleSubmit}
+          >
             <Form.Group as={Row} controlId="email">
               <Form.Label column sm={3}>
                 Email
               </Form.Label>
               <Col sm={9}>
-                <Form.Control type="email" placeholder="Informe seu E-mail" name="email" data-testid="txt-email" />
+                <Form.Control 
+                  type="email" 
+                  placeholder="Informe seu E-mail" 
+                  name="email" 
+                  data-testid="txt-email" 
+                  value={values.email}
+                  onChange={handleChange}
+                  isValid={touched.email && !errors.email}
+                  isInvalid={touched.email && !!errors.email }
+                />
                 <Form.Control.Feedback type="invalid">
                   Informe um E-mail valido.
                 </Form.Control.Feedback>
@@ -76,7 +118,16 @@ export default (props) => {
                 Nome Completo
               </Form.Label>
               <Col sm={9}>
-                <Form.Control type="text" placeholder="Informe seu nome completo" name="nomeCompleto" data-testid="txt-nome-completo" />
+                <Form.Control 
+                  type="text" 
+                  placeholder="Informe seu nome completo" 
+                  name="nomeCompleto" 
+                  data-testid="txt-nome-completo" 
+                  value={values.nomeCompleto}
+                  onChange={handleChange}
+                  isValid={touched.nomeCompleto && !errors.nomeCompleto}
+                  isInvalid={touched.nomeCompleto && !!errors.nomeCompleto }
+                />
                 <Form.Control.Feedback type="invalid">
                   Informe seu nome completo (mínimo de 5 caracteres)
                 </Form.Control.Feedback>
@@ -88,7 +139,19 @@ export default (props) => {
                 Data de Nascimento
               </Form.Label>
               <Col sm={9}>
-                <DatePicker withPortal locale="pt" peekNextMonth showMonthDropdown showYearDropdown dropdownMode="select" dateFormat="dd/MM/yyyy" placeholderText="Informe a data de nascimento" />
+                <DatePicker 
+                  withPortal 
+                  locale="pt" 
+                  peekNextMonth 
+                  showMonthDropdown 
+                  showYearDropdown 
+                  dropdownMode="select" 
+                  dateFormat="dd/MM/yyyy" 
+                  placeholderText="Informe a data de nascimento" 
+                  selected={dataNascimento}  
+                  onChange={handleDataNascimento}
+                  className={datePickerCss()}
+                />
               </Col>
             </Form.Group>
 
@@ -97,7 +160,16 @@ export default (props) => {
                 CPF
               </Form.Label>
               <Col sm={9}>
-                <Form.Control type="text" placeholder="Informe seu CPF" name="nomeCompleto" data-testid="txt-cpf" />
+                <Form.Control 
+                  type="text" 
+                  placeholder="Informe seu CPF" 
+                  name="nomeCompleto" 
+                  data-testid="txt-cpf" 
+                  value={values.cpf}
+                  onChange={handleChange}
+                  isValid={touched.cpf && !errors.cpf}
+                  isInvalid={touched.cpf && !!errors.cpf }
+                />
                 <Form.Control.Feedback type="invalid">
                   Informe um CPF válido
                 </Form.Control.Feedback>
@@ -109,7 +181,16 @@ export default (props) => {
                 Endereço Completo
               </Form.Label>
               <Col sm={9}>
-                <Form.Control type="text" placeholder="Informe seu endereço Completo" name="endereco" data-testid="txt-endereco" />
+                <Form.Control 
+                  type="text" 
+                  placeholder="Informe seu endereço Completo" 
+                  name="endereco" 
+                  data-testid="txt-endereco" 
+                  value={values.endereco}
+                  onChange={handleChange}
+                  isValid={touched.endereco && !errors.endereco}
+                  isInvalid={touched.endereco && !!errors.endereco }
+                />
                 <Form.Control.Feedback type="invalid">
                   Informe seu endereço completo.
                 </Form.Control.Feedback>
@@ -121,7 +202,15 @@ export default (props) => {
                 Informe seu estado
               </Form.Label>
               <Col sm={9}>
-                <Form.Control as="select" name="estado" data-testid="txt-estado" >
+                <Form.Control 
+                  as="select" 
+                  name="estado" 
+                  data-testid="txt-estado" 
+                  value={values.estado}
+                  onChange={handleChange}
+                  isValid={touched.estado && !errors.estado}
+                  isInvalid={touched.estado && !!errors.estado }
+                >
                   <ListarEstados />
                 </Form.Control>
                 <Form.Control.Feedback type="invalid">
@@ -135,9 +224,17 @@ export default (props) => {
                 Informe sua cidade
               </Form.Label>
               <Col sm={9}>
-                <Form.Control as="select" name="cidade" data-testid="txt-cidade">
+                <Form.Control 
+                  as="select" 
+                  name="cidade" 
+                  data-testid="txt-cidade"
+                  value={values.cidade}
+                  onChange={handleChange}
+                  isValid={touched.cidade && !errors.cidade}
+                  isInvalid={touched.cidade && !!errors.cidade }
+                >
                   <option value="">Selecione uma cidade</option>
-                  <ListarCidades estado={''} />
+                  <ListarCidades estado={values.estado} />
                 </Form.Control>
                 <Form.Control.Feedback type="invalid">
                   Informe sua cidade
@@ -150,7 +247,16 @@ export default (props) => {
                 CEP
               </Form.Label>
               <Col sm={9}>
-                <Form.Control type="text" placeholder="Informe seu CEP" name="cep" data-testid="txt-cep" />
+                <Form.Control 
+                  type="text" 
+                  placeholder="Informe seu CEP" 
+                  name="cep" 
+                  data-testid="txt-cep" 
+                  value={values.cep}
+                  onChange={handleChange}
+                  isValid={touched.cep && !errors.cep}
+                  isInvalid={touched.cep && !!errors.cep }
+                />
                 <Form.Control.Feedback type="invalid">
                   Informe um CEP válido
                 </Form.Control.Feedback>
@@ -161,12 +267,39 @@ export default (props) => {
               <Form.Label column sm={12}>
                 Deseja receber emails com promoções?
               </Form.Label>
-              <Form.Check inline name="emailPromocional" type="radio" id="promocaoSim" value="S" label="Sim" style={{ marginLeft: "15px" }} />
-              <Form.Check inline name="emailPromocional" type="radio" id="promocaoNao" value="N" label="Não" style={{ marginLeft: "15px" }} />
+              <Form.Check 
+                inline name="emailPromocional" 
+                type="radio" 
+                id="promocaoSim" 
+                value="S" 
+                label="Sim" 
+                style={{ marginLeft: "15px" }} 
+                checked={values.emailPromocional === 'S'}
+                onChange={handleChange}
+              />
+              <Form.Check 
+                inline name="emailPromocional" 
+                type="radio" 
+                id="promocaoNao" 
+                value="N" 
+                label="Não" 
+                style={{ marginLeft: "15px" }} 
+                checked={values.emailPromocional === 'N'}
+                onChange={handleChange}
+              />
             </Form.Group>
 
             <Form.Group as={Row} controlId="termosCondicoes">
-              <Form.Check name="termosCondicoes" label="Concordo com os termos e condições." style={{ marginLeft: "15px" }} data-testid="check-termos-condicoes" />
+              <Form.Check 
+                name="termosCondicoes" 
+                label="Concordo com os termos e condições." 
+                style={{ marginLeft: "15px" }} 
+                data-testid="check-termos-condicoes" 
+                value={values.termosCondicoes}
+                onChange={handleChange}
+                isValid={touched.termosCondicoes && !errors.termosCondicoes}
+                isInvalid={touched.termosCondicoes && !!errors.termosCondicoes }
+              />
             </Form.Group>
 
             <Form.Group as={Row} controlId="finalizaCompra">
