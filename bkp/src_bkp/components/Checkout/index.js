@@ -15,6 +15,7 @@ import ListarCidades from './listarCidades';
 
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { validarCpf} from '../../utils/cpf-util';
 
 registerLocale('pt', pt);
 
